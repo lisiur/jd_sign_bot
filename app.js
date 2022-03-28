@@ -38,19 +38,10 @@ async function sendNotify() {
   if (fs.existsSync(path)) {
     content = await fs.readFileSync(path, "utf8");
   }
-  let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/);
-
-  let res = t ? t[1].replace(/\n/, "") : "失败";
-  let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/);
-  let res2 = t2 ? t2[1].replace(/\n/, "") : "总计0";
-
-  const title = `${res2}-${res}-${new Date().toLocaleDateString()}`;
-  const text = title + "\n" + content;
-
   axios.post(PUSH_ADDRESS, {
     msg_type: "text",
     content: {
-      text,
+        text: content,
     },
   });
   // await send({
