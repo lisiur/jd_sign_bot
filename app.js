@@ -75,7 +75,7 @@ async function main() {
 
   // 执行
   // execFileSync("JD_DailyBonus.js", [], {stdio: 'inherit})
-  console.log(fs.readFileSync("JD_DailyBonus.js"));
+  console.log(fs.readFileSync("JD_DailyBonus.js", "utf8"));
   exec("node JD_DailyBonus.js >> result.txt");
   console.log("执行完毕");
 
