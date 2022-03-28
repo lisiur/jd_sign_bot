@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ruicky/jd_sign_bot#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "download": "^8.0.0",
     "push-all-in-one": "^2.0.0",
     "request": "^2.88.2",
