@@ -2,7 +2,7 @@
 // create by ruicky
 // detail url: https://github.com/ruicky/jd_sign_bot
 
-import { execSync as exec } from "child_process";
+import { execSync as exec, execFileSync } from "child_process";
 import fs from "fs";
 import download from "download";
 import axios from "axios";
@@ -24,22 +24,22 @@ async function downFile() {
 
 // 修改文件
 async function changeFile() {
-  let content = await fs.readFileSync("./JD_DailyBonus.js", "utf8");
+  let content = fs.readFileSync("./JD_DailyBonus.js", "utf8");
   content = content.replace(/var OtherKey = ``/, 'var OtherKey = `' + JSON.stringify([
       {
           cookie: KEY,
       }
   ]) + '`');
-  await fs.writeFileSync("./JD_DailyBonus.js", content, "utf8");
+  fs.writeFileSync("./JD_DailyBonus.js", content, "utf8");
 }
 
 async function sendNotify() {
   const path = "./result.txt";
   let content = "";
   if (fs.existsSync(path)) {
-    content = await fs.readFileSync(path, "utf8");
+    content = fs.readFileSync(path, "utf8");
   }
-  axios.post(PUSH_ADDRESS, {
+  await axios.post(PUSH_ADDRESS, {
     msg_type: "text",
     content: {
         text: content,
@@ -74,7 +74,7 @@ async function main() {
   console.log("替换变量完毕");
 
   // 执行
-  await exec("node JD_DailyBonus.js >> result.txt");
+  execFileSync("JD_DailyBonus.js", [], {stdio: 'inherit'});
   console.log("执行完毕");
 
   // 发送结果
