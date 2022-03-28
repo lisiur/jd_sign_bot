@@ -74,7 +74,9 @@ async function main() {
   console.log("替换变量完毕");
 
   // 执行
-  execFileSync("JD_DailyBonus.js", [], {stdio: 'inherit'});
+  // execFileSync("JD_DailyBonus.js", [], {stdio: 'inherit})
+  console.log(fs.readFileSync("JD_DailyBonus.js"));
+  exec("node JD_DailyBonus.js >> result.txt");
   console.log("执行完毕");
 
   // 发送结果
