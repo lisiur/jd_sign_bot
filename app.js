@@ -2,17 +2,13 @@
 // create by ruicky
 // detail url: https://github.com/ruicky/jd_sign_bot
 
-import { execSync as exec, execFileSync } from "child_process";
-import fs from "fs";
-import download from "download";
-import axios from "axios";
+const { execSync: exec } = require("child_process")
+const fs = require('fs')
+const axios = require('axios')
+const download = require('download')
 
 // 公共变量
-const {
-  KEY,
-  DualKey,
-  PUSH_ADDRESS,
-} = process.env;
+const { KEY, PUSH_ADDRESS, } = process.env;
 
 // 下载文件
 async function downFile() {
@@ -74,10 +70,7 @@ async function main() {
   console.log("替换变量完毕");
 
   // 执行
-  // execFileSync("JD_DailyBonus.js", [], {stdio: 'inherit})
-  console.log(fs.readFileSync("JD_DailyBonus.js", "utf8"));
   exec("node JD_DailyBonus.js >> result.txt");
-	require("./JD_DailyBonus.js")
   console.log("执行完毕");
 
   // 发送结果

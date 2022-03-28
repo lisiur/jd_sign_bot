@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "",
   "main": "JD_DailyBonus.js",
-  "type": "module",
   "scripts": {
     "start": "node app.js",
     "dev": "KEY=1 serverJ=2 node app.js",
